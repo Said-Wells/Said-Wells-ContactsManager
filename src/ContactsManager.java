@@ -63,7 +63,7 @@ public class ContactsManager {
     }
 
     private static int mainMenu() {
-        System.out.print("-----------------------------\n=>Welcome To Contacts Manager\nPlease, choose one of the following option:\nEnter (1) Show all contacts\nEnter (2) Add a new contact\nEnter (3) Search for a contact by name\nEnter (4) Delete a contact\nEnter (5) Exit. \n ---------------------------------\n");
+        System.out.print("-----------------------------\n⭐️⭐️⭐️ Welcome To The Contacts Manager App 📱 ⭐️⭐️⭐\nPlease choose from one of the following options:\nEnter 1️⃣ to show all contacts 📖\nEnter 2️⃣ to add a new contact ✅\nEnter 3️⃣ to search for a contact by name 🔍\nEnter 4️⃣ to delete a contact 🗑️ \nEnter 5️⃣ to exit the app 🚫 \n ---------------------------------\n");
         userInput input = new userInput();
         return input.getNumber();
     }
