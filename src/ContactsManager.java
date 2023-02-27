@@ -69,7 +69,7 @@ public class ContactsManager {
 
     private static void showAllContacts(List<Contact> contacts){
         System.out.println("All contacts");
-        System.out.printf("Names   | Phone number  \n ------------- \n");
+        System.out.printf("Name   | Phone number  \n ------------- \n");
         for(Contact contact: contacts){
             System.out.println(contact.getName() + " | " + formatPhoneNumber(contact.getPhoneNumber()));
         }
@@ -77,7 +77,12 @@ public class ContactsManager {
 
     private static String formatPhoneNumber(String phoneNumber){
         String formatted = phoneNumber.replaceAll("\\D", "");
-        formatted = formatted.substring(0, 3) + "-" + formatted.substring(3, 6) + "-" + formatted.substring(6);
+
+        if(formatted.length() == 10){
+            formatted = "+(1)" + formatted.substring(0, 3) + "-" + formatted.substring(3, 6) + "-" + formatted.substring(6);
+        }else{
+            formatted = "+(Int)" + formatted.substring(0, 2) + "-" + formatted.substring(3);
+        }
         return formatted;
     }
 
