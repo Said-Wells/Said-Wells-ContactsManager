@@ -62,7 +62,7 @@ public class ContactsManager {
     }
 
     private static int mainMenu() {
-        System.out.print("-----------------------------\n=>Welcome To Contacts Manager\nPlease, choose one of the following option:\nEnter (1) Show all contacts\nEnter (2) Add a new contact\nEnter (3) Search for a contact by name\nEnter (4) Delete a contact\nEnter (5) Exit. \n ---------------------------------\n");
+        System.out.print("-----------------------------\nWelcome To Contacts Manager\nPlease, choose one of the following option:\nEnter (1) Show all contacts\nEnter (2) Add a new contact\nEnter (3) Search for a contact by name\nEnter (4) Delete a contact\nEnter (5) Exit. \n ---------------------------------\n");
         userInput input = new userInput();
         return input.getNumber();
     }
