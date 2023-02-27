@@ -11,9 +11,6 @@ public class userInput {
         return this.scanner.nextLine();
     }
 
-    public int getNumber() {
-        return this.scanner.nextInt();
-    }
 
 }
 

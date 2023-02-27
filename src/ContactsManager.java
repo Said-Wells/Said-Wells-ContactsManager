@@ -1,5 +1,3 @@
-import com.sun.security.jgss.GSSUtil;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,7 +8,7 @@ import java.util.Scanner;
 public class ContactsManager {
 
     private static final String CONTACTS = "contacts.txt";
-
+    public static userInput input = new userInput();
 
     public static void main(String[] args) {
 
@@ -63,9 +61,8 @@ public class ContactsManager {
     }
 
     private static int mainMenu() {
-        System.out.print("-----------------------------\n⭐️⭐️⭐️ Welcome To The Contacts Manager App 📱 ⭐️⭐️⭐\nPlease choose from one of the following options:\nEnter 1️⃣ to show all contacts 📖\nEnter 2️⃣ to add a new contact ✅\nEnter 3️⃣ to search for a contact by name 🔍\nEnter 4️⃣ to delete a contact 🗑️ \nEnter 5️⃣ to exit the app 🚫 \n ---------------------------------\n");
-        userInput input = new userInput();
-        return input.getNumber();
+        System.out.print("----------------------------------\n⭐️⭐️⭐️ Welcome To The Contacts Manager App 📱 ⭐️⭐️⭐\nPlease choose from one of the following options:\nEnter 1️⃣ to show all contacts 📖\nEnter 2️⃣ to add a new contact ✅\nEnter 3️⃣ to search for a contact by name 🔍\nEnter 4️⃣ to delete a contact 🗑️ \nEnter 5️⃣ to exit the app 🚫 \n ---------------------------------\n");
+        return Integer.parseInt(input.getString());
     }
 
 
@@ -105,7 +102,6 @@ public class ContactsManager {
 
     private static void addContact(List<Contact> contacts) {
         System.out.println("Enter the name of the new Contact: ");
-        userInput input = new userInput();
         String name = input.getString();
         if (contactExist(contacts, name)) {
             System.out.println("The contact already exist!");
@@ -128,7 +124,6 @@ public class ContactsManager {
 
     private static void removeContact(List<Contact> contacts) {
         System.out.println("Enter the name to remove: ");
-        userInput input = new userInput();
         String name = input.getString();
         Contact contact = findContact(contacts, name);
         if (contact == null) {
@@ -150,7 +145,6 @@ public class ContactsManager {
 
     private static void findContact(List<Contact> contacts) {
         System.out.println("Enter the name to find Contact: ");
-        userInput input = new userInput();
         String name = input.getString();
         Contact contact = findContact(contacts, name);
         if (contact == null) {
