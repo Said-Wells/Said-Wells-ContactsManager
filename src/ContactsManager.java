@@ -7,13 +7,18 @@ import java.util.Scanner;
 
 public class ContactsManager {
 
+    //Variable containing our TXT file.
     private static final String CONTACTS = "contacts.txt";
+
+    //Custom class to get user input.
     public static userInput input = new userInput();
 
     public static void main(String[] args) {
 
+        //Variable that loads our programs list of contacts on start up.
         List<Contact> contacts = loadingContacts();
 
+        //User selection menu.
         boolean goOn = true;
         while (goOn) {
             int choice = mainMenu();
@@ -37,9 +42,13 @@ public class ContactsManager {
                     System.out.println("Invalid choice, Enter a number between 1 - 5");
             }
         }
+
+        //Saves the changes to the file.
         writeContactsToFile(contacts);
     }
 
+
+    //This method creates an ArrayList of parsed Contact objects based up on the TXT file passed into it and returns that new list.
     private static List<Contact> loadingContacts() {
 
         List<Contact> contacts = new ArrayList<>();
@@ -60,12 +69,14 @@ public class ContactsManager {
         return contacts;
     }
 
+    //This method creates the UI for the program.
     private static int mainMenu() {
         System.out.print("----------------------------------\n⭐️⭐️⭐️ Welcome To The Contacts Manager App 📱 ⭐️⭐️⭐\nPlease choose from one of the following options:\nEnter 1️⃣ to show all contacts 📖\nEnter 2️⃣ to add a new contact ✅\nEnter 3️⃣ to search for a contact by name 🔍\nEnter 4️⃣ to delete a contact 🗑️ \nEnter 5️⃣ to exit the app 🚫 \n ---------------------------------\n");
         return Integer.parseInt(input.getString());
     }
 
 
+    //This method takes in a list of Contact objects and writes to the TXT file the object to information to be saved.
     private static void writeContactsToFile(List<Contact> contacts) {
         try (FileWriter writer = new FileWriter(CONTACTS)) {
             for (Contact contact : contacts) {
@@ -77,6 +88,7 @@ public class ContactsManager {
     }
 
 
+    //This method takes in a list of Contact objects and displays all the objects' information to the user.
     private static void showAllContacts(List<Contact> contacts) {
         System.out.println("|==============> All contacts <=============|");
         System.out.print("|  Name               |  Phone number       |\n ------------------------------------------- \n");
@@ -89,6 +101,7 @@ public class ContactsManager {
         }
     }
 
+    //This method takes in a phoneNumber and formats it into a 3-digit-3digit-4digit pattern separated by "-". It also differentiates between U.S. and International phone numbers.
     private static String formatPhoneNumber(String phoneNumber) {
         String formatted = phoneNumber.replaceAll("\\D", "");
 
@@ -100,6 +113,8 @@ public class ContactsManager {
         return formatted;
     }
 
+
+    //This method takes in a list of Contact objects and allows the user add a new contact. If that contact already exist, it alerts the users and prevents them from adding that user again.
     private static void addContact(List<Contact> contacts) {
         System.out.println("Enter the name of the new Contact: ");
         String name = input.getString();
@@ -113,6 +128,8 @@ public class ContactsManager {
         System.out.println("Success!");
     }
 
+
+    //This method takes in a list of Contact objects and a String name and checks to see of that contact currently exist in the list.
     private static boolean contactExist(List<Contact> contacts, String name) {
         for (Contact contact : contacts) {
             if (contact.getName().equalsIgnoreCase(name)) {
@@ -122,6 +139,7 @@ public class ContactsManager {
         return false;
     }
 
+    //This method takes in a list of Contact objects and allows the user to input a contact to be deleted if the contact does exist within the list. If it doesn't exist, then it will alert the user.
     private static void removeContact(List<Contact> contacts) {
         System.out.println("Enter the name to remove: ");
         String name = input.getString();
@@ -134,6 +152,7 @@ public class ContactsManager {
         }
     }
 
+    //This method takes in a list of Contact objects and a String name and returns that contact if the contact is in the list, else it returns null.
     private static Contact findContact(List<Contact> contacts, String name) {
         for (Contact contact : contacts) {
             if (contact.getName().equalsIgnoreCase(name)) {
@@ -143,6 +162,7 @@ public class ContactsManager {
         return null;
     }
 
+    //This method takes in a list of Contact objects and allows the user to search for a contact in the list. If the contact exist, it returns a formatted result of thr contact name and phone number. If it doesn't exist, the program alerts the user that no such contact exists in the list.
     private static void findContact(List<Contact> contacts) {
         System.out.println("Enter the name to find Contact: ");
         String name = input.getString();
